@@ -84,7 +84,7 @@ h6 {
     font-weight: 400;
     margin: 0;
     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility
+    text-rendering: optimizeLegibility;
 }
 
 ul {

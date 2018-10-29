@@ -24,7 +24,8 @@ app.get('/game/:id', (req, res) => {
         currentPage = 1,
         items = [],
         itemsArray = [],
-        itemsList = [];
+        itemsList = [],
+        maxPage = 1000;
     if (typeof req.query.page !== "undefined") {
         currentPage = +req.query.page;
     }
@@ -32,8 +33,14 @@ app.get('/game/:id', (req, res) => {
         var table = out;
 
         //Pagination
+
         var pageCount = parseInt(parseInt(table[0].totalItems) / 30) + 1;
+        if (pageCount > maxPage) {
+            console.log("PageCount is too big. resizing to maxPage which is set at 1000");
+            pageCount = 1000;
+        }
         totalEntries = parseInt(table[0].totalItems);
+        console.log(totalEntries, pageCount);
         pageSize = table.length;
         for (let i = 0; i < table.length; i++) {
             items.push(table[i]);
@@ -52,6 +59,9 @@ app.get('/game/:id', (req, res) => {
             currentPage: currentPage,
             id: req.params.id
         });
+    }).catch((r) => {
+        console.log(r);
+        res.status(408).render('error.html');
     });
 });
 var server = app.listen(8081, function () {
