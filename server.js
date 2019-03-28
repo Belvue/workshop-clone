@@ -15,7 +15,7 @@ app.set("port", process.env.PORT || 3000);
 
 app.get('/', (req, res) => {
     res.render('index.html', {
-        title: "Workshop Viewer"
+        title: "Workshop Scraper"
     });
 });
 
@@ -58,7 +58,7 @@ app.get('/game/:id', (req, res) => {
         itemsList = itemsArray[0];
         res.render('game.html', {
             table: table,
-            title: "Workshop Items",
+            title: "Game " + req.params.id + " - Workshop Scraper",
             items: itemsList,
             pageSize: pageSize,
             totalEntries: totalEntries,

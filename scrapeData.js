@@ -6,6 +6,7 @@ async function main(gameId, pages) {
     pageId = pages;
     var output = [];
     const browser = await puppeteer.launch({
+        args: ['--no-sandbox'],
         headless: true
     });
     console.log(`Loading Page ${pageId} for ${gameId}`);
