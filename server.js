@@ -3,6 +3,7 @@ var express = require("express");
 var path = require("path");
 var app = express();
 var scraper = require('./scrapeData');
+var axios = require('axios');
 
 app.set("view engine", "html");
 app.engine("html", require("ejs").renderFile);
@@ -16,7 +17,13 @@ app.get('/', (req, res) => {
     res.render('index.html', {
         title: "Workshop Viewer"
     });
-})
+});
+
+app.get('/search/:id', (req, res) => {
+    axios.get(`https://steamcommunity.com/workshop/ajaxfindworkshops/?searchText=${req.params.id}`).then((data) => {
+        res.json(data.data);
+    }).catch(err => console.log(err));
+});
 
 app.get('/game/:id', (req, res) => {
     var totalEntries,
@@ -64,6 +71,6 @@ app.get('/game/:id', (req, res) => {
         res.status(408).render('error.html');
     });
 });
-var server = app.listen(8081, function () {
+var server = app.listen(8080, function () {
     console.log("Express server listening on port " + server.address().port);
 });

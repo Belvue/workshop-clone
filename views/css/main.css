@@ -617,7 +617,8 @@ a {
     font-size: 100%;
     width: auto;
     height: auto;
-    border-radius: 10px;
+    border-radius: 3px;
+    padding: 2px;
 }
 
 [data-pagination]>a {
