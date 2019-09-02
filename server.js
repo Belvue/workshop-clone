@@ -4,6 +4,7 @@ var app = express();
 var scraper = require('./js/scrapeData.min');
 var axios = require('axios');
 
+app.disable('x-powered-by');
 app.set("view engine", "html");
 app.engine("html", require("ejs").renderFile);
 
