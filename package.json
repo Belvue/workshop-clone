@@ -1,19 +1,24 @@
 {
   "name": "Workshop-Clone",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "server.js",
   "scripts": {
+    "build": "grunt",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Belvue",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
-    "ejs": "^2.6.1",
-    "express": "^4.16.4",
-    "fs-extra": "^7.0.0",
-    "puppeteer": "^1.9.0"
+    "axios": "^0.19.0",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "puppeteer": "^1.19.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.4",
+    "grunt-contrib-uglify-es": "^3.3.0"
   }
 }

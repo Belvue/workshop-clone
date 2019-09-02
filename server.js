@@ -1,8 +1,7 @@
-"use strict";
 var express = require("express");
 var path = require("path");
 var app = express();
-var scraper = require('./scrapeData');
+var scraper = require('./js/scrapeData.min');
 var axios = require('axios');
 
 app.set("view engine", "html");
@@ -10,7 +9,6 @@ app.engine("html", require("ejs").renderFile);
 
 app.use(express.static(path.join(__dirname, ".")));
 
-// ReSharper disable once PossiblyUnassignedProperty
 app.set("port", process.env.PORT || 3000);
 
 app.get('/', (req, res) => {
@@ -43,11 +41,9 @@ app.get('/game/:id', (req, res) => {
 
         var pageCount = parseInt(parseInt(table[0].totalItems) / 30) + 1;
         if (pageCount > maxPage) {
-            console.log("PageCount is too big. resizing to maxPage which is set at 1000");
             pageCount = 1000;
         }
         totalEntries = parseInt(table[0].totalItems);
-        console.log(totalEntries, pageCount);
         pageSize = table.length;
         for (let i = 0; i < table.length; i++) {
             items.push(table[i]);
@@ -67,10 +63,9 @@ app.get('/game/:id', (req, res) => {
             id: req.params.id
         });
     }).catch((r) => {
-        console.log(r);
         res.status(408).render('error.html');
     });
 });
-var server = app.listen(8080, function () {
+var server = app.listen(app.get("port"), function () {
     console.log("Express server listening on port " + server.address().port);
 });
