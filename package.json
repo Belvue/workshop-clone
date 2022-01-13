@@ -12,7 +12,7 @@
   "author": "Belvue",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
     "puppeteer": "^1.19.0"
